@@ -54,7 +54,7 @@ body {
   border-radius: 50%;
 }
 .eyelid.active::after {
-  animation: blink 0.3s infinite;
+  animation: blink 0.3s 4;
 }
 .speed {
   position: absolute;
