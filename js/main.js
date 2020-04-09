@@ -1,12 +1,9 @@
-!function() {
+$(document).ready(function () {
   var duration = 25;
-  $(".speed").on("click", "button", function(e) {
+  $(".speed").on("click", "button", function (e) {
     let $button = $(e.currentTarget); // button
     let speed = $button.attr("data-speed");
-    $button
-      .addClass("active")
-      .siblings(".active")
-      .removeClass("active");
+    $button.addClass("active").siblings(".active").removeClass("active");
     switch (speed) {
       case "slow":
         duration = 50;
@@ -159,20 +156,17 @@
   /*bingo！大功告成！☺️*/`;
 
   function writeCode(code, fn) {
-    //写代码
     let n = 0;
-    let id;
-    let codeContent = document.querySelector("#codeContent");
-    let cssCode = document.querySelector("#cssCode");
-
-    id = setTimeout(function run() {
+    var cssCode = $("#cssCode");
+    var codeContent = $("#codeContent");
+    // debugger;
+    let id = setTimeout(function run() {
       n += 1;
-      cssCode.innerHTML = code.substring(0, n);
-      codeContent.innerHTML = Prism.highlight(
-        code.substring(0, n),
-        Prism.languages.css,
-        "css"
+      cssCode.html(code.substring(0, n));
+      codeContent.html(
+        Prism.highlight(code.substring(0, n), Prism.languages.css, "css")
       );
+      // console.log("success");
 
       codeWrapper.scrollTop = codeWrapper.scrollHeight;
       if (n < code.length) {
@@ -184,18 +178,17 @@
   }
   function blink() {
     //添加眨眼动画
-    var eyelid = document.querySelectorAll(".eyelid");
-    eyelid[0].classList.add("active");
-    eyelid[1].classList.add("active");
+    $(".eyelid")[0].classList.add("active");
+    $(".eyelid")[1].classList.add("active");
   }
   function smile() {
-    document.querySelector(".mouth").classList.add("smiling"); //添加笑容动作
+    $(".mouth").addClass("smiling");
     setTimeout(() => {
-      document.querySelector(".mouth").classList.add("active"); //添加笑容样式
+      $(".mouth").addClass("active");
     }, 4000);
   }
-  writeCode(code, function() {
+  writeCode(code, function () {
     blink();
     smile();
   });
-}.call();
+});
